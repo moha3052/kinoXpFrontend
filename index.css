@@ -1,71 +1,124 @@
-* {
+/* Generel styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #2c3e50;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #15003A;
+
+/* Header styling */
+.header {
+    background-color: #34495e;
     color: white;
     padding: 20px;
-}
-
-.header {
-    background-color: #001C2C;
-    padding: 20px;
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.no-link-style {
+    color: white;
+    text-decoration: none;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+/* Search and filter section */
 .search-filter {
     display: flex;
     justify-content: space-between;
-    margin: 20px 0;
+    align-items: center;
+    background-color: #ecf0f1;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .search-box {
     display: flex;
     align-items: center;
-    background-color: white;
-    border-radius: 20px;
-    padding: 10px;
+    width: 60%;
 }
 
 .search-box input {
-    border: none;
-    outline: none;
-    padding-left: 10px;
-    font-size: 16px;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #bdc3c7;
+    margin-right: 10px;
 }
 
 .search-box button {
-    background-color: transparent;
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    background-color: #3498db;
+    color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+
+    transition: all 0.3s ease;
 }
 
-.filter-box button {
+.search-box button:hover {
+    background-color: #2980b9;
+}
+
+/* Genre filter dropdown */
+.genre-filter {
+    width: 35%;
+    text-align: right;
+}
+
+.genre-filter label {
+    font-size: 1rem;
+    margin-right: 10px;
+    color: #2c3e50;
+}
+
+.genre-filter select {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #bdc3c7;
     background-color: white;
-    color: black;
-    padding: 10px 20px;
-    border-radius: 20px;
     cursor: pointer;
-    border: none;
+    transition: border-color 0.3s ease;
 }
 
+.genre-filter select:hover {
+    border-color: #3498db;
+}
+
+/* Movies grid */
 .movies {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    justify-content: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
+/* Movie card styling */
 .movie-card {
-    background-color: #15003A;
+    background-color: #ecf0f1;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 180px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    max-width: 300px;
+    width: 100%;
+}
+
+.movie-card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    cursor: pointer;
 }
 
 .movie-card img {
@@ -74,43 +127,161 @@ body {
 }
 
 .movie-info {
-    background-color: #FFCC00;
-    padding: 10px;
+    padding: 15px;
+    text-align: center;
 }
 
-.movie-info h2 {
-    font-size: 18px;
+.movie-info h3 {
+    font-size: 1.2rem;
     margin-bottom: 10px;
+    color: #2c3e50;
 }
 
 .movie-info p {
-    font-size: 14px;
-    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: #7f8c8d;
 }
 
-.ticket-button {
-    background-color: green;
-    color: white;
-    padding: 10px;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    margin: 10px;
+.movie-info .movie-year, .movie-info .movie-genre {
+    font-size: 20px;
+    color: #95a5a6;
+    margin-top: 5px;
+}
+.movie-rating {
+    font-size: 0.85rem;
+    color: #e67e22; /* En farve, der skiller sig ud */
+    margin-top: 5px;
 }
 
-.movies {
+
+.header {
     display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap; /* Gør det responsivt */
+    justify-content: space-between; /* Placerer elementer på modsatte sider */
+    align-items: center; /* Centrerer elementerne vertikalt */
+    background-color: #34495e;
+    color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.movie-card {
-    background-color: #15003A;
-    border-radius: 10px;
-    overflow: hidden;
-    width: 180px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 10px;
+.header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+/* Auth Button styling */
+.header button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.header button:hover {
+    background-color: #2980b9;
+}
+
+
+.modal {
+    display: none; /* Skjult som standard */
+    position: fixed; /* Fast position */
+    z-index: 1000; /* Højere z-index for at være ovenpå */
+    left: 0;
+    top: 0;
+    width: 100%; /* Fuldbredde */
+    height: 100%; /* Fuldhøjde */
+    overflow: auto; /* Tilføj scrollbar hvis nødvendigt */
+    background-color: rgba(0, 0, 0, 0.8); /* Sort baggrund med gennemsigtighed */
+}
+
+.modal-content {
+    position: absolute; /* Absolut positionering */
+    top: 50%; /* Center vertikalt */
+    left: 50%; /* Center horisontalt */
+    transform: translate(-50%, -50%); /* Flyt ind i midten */
+    width: 80%; /* Bredde på modalindholdet */
+    max-width: 700px; /* Maksimal bredde */
+    background-color: #fff; /* Hvid baggrund for modalindholdet */
+    border-radius: 8px; /* Rundede hjørner */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Skygge for at give dybde */
+    padding: 20px; /* Indvendig afstand */
+}
+
+#trailerThumbnail {
+    width: 100%; /* Billedet fylder modalbredden */
+    border-radius: 8px; /* Rundede hjørner */
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: white;
+    z-index: 1;
+    pointer-events: auto; /* Gør det muligt at klikke på play-knappen */
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    color: white;
+    cursor: pointer; /* Ændre cursor til pointer ved hover */
+}
+
+.trailer-button {
+    background-color: #00A4E4; /* Blå farve */
+    color: white; /* Hvid tekst */
+    border: none; /* Ingen kant */
+    border-radius: 5px; /* Rundede hjørner */
+    padding: 10px 20px; /* Indvendig afstand */
+    font-size: 16px; /* Skriftstørrelse */
+    cursor: pointer; /* Håndcursor ved hover */
+    transition: background-color 0.3s, transform 0.3s; /* Animationseffekter */
+}
+
+.trailer-button:hover {
+    background-color: #007BB8; /* Mørkere blå ved hover */
+    transform: translateY(-2px); /* Let opadbevægelse ved hover */
+}
+
+.trailer-button:active {
+    transform: translateY(1px); /* Let nedadbevægelse ved klik */
+}
+
+
+
+
+
+
+
+
+
+/* Responsiv styling */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .search-box {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .search-box {
+        max-width: 100%;
+        padding: 0 20px;
+    }
 }
