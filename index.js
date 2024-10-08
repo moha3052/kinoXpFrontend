@@ -95,17 +95,17 @@ class MovieApp {
             movieCard.classList.add('movie-card');
             movieCard.dataset.genres = movie.genre_ids.join(',');
             movieCard.innerHTML = `
-                <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${movie.title}">
-                <div class="movie-info">
-                    <h3>${movie.title}</h3>
-                    <p class="movie-year">${movie.release_date.substring(0, 4)}</p>
-                    <p class="movie-rating">${this.getMPAARating(movie.adult)}</p>
-                    <button class="trailer-button" onclick="app.showTrailer(${movie.id})">Se Trailer</button>
-                </div>
-            `;
+            <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${movie.title}">
+            <div class="movie-info">
+                <h3>${movie.title}</h3>
+                <button class="Se tidspunkter" onclick="location.href='show.html?movieId=${movie.id}'">Se Tidspunkter</button>
+                <button class="trailer-button" onclick="app.showTrailer(${movie.id})">Se Trailer</button>
+            </div>
+        `;
             movieContainer.appendChild(movieCard);
         });
     }
+    
 
     getMPAARating(isAdult) {
         return isAdult ? 'Aldersgrænse: 18+' : 'Aldersgrænse: 13+';
