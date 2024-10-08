@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jambe Bio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="icon" href="https://img.icons8.com/?size=100&id=2791&format=png&color=000000">
 </head>
 <body>
 <header class="header">
     <h1><a href="http://127.0.0.1:5502/index.html" class="no-link-style">Jambe bio</a></h1>
-    <button id="authButton" onclick="" ><a href="http://127.0.0.1:5502/login.html" class="no-link-style">Log in / Sign in</a></button>
+    <button id="authButton" ><a href="http://127.0.0.1:5502/login.html" class="no-link-style">Log in / Sign in</a></button>
 </header>
 
 <div class="search-filter">
@@ -33,20 +33,18 @@
     <!-- Her kommer de dynamisk hentede film -->
 </section>
 
-<!-- Trailer Button -->
-
-
 <!-- Modal -->
 <div id="trailerModal" class="modal">
     <div class="modal-content">
         <span class="close-button">&times;</span>
         <div class="trailer-container">
-            <img id="trailerThumbnail" src="trailer-thumbnail.jpg" alt="Trailer Thumbnail" />
+            <img id="trailerThumbnail" src="" alt="Trailer Thumbnail" />
             <div class="play-button" id="playButton">▶</div>
         </div>
         <iframe id="trailerIframe" width="560" height="315" frameborder="0" allowfullscreen style="display:none;"></iframe>
     </div>
 </div>
+
 <script src="index.js"></script>
 </body>
 </html>
