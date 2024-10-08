@@ -3,6 +3,8 @@ class MovieApp {
         this.apiKey = '2b5953c6a0951ac2ba0f1d30493b74ec'; // API-nøgle til TMDb
         this.init();
     }
+    
+    ///
 
     // Initialiserer applikationen ved at tilføje event listeners til DOM-elementer
     init() {
