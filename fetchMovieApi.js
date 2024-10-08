@@ -225,3 +225,41 @@ function showTrailerThumbnail(movieId, trailerKey) {
     const thumbnailPath = ''; // Tilføj eventuelt en metode til at hente en specifik thumbnail
     openTrailerModal(trailerKey, thumbnailPath);
 }
+
+function saveMovieToBackend(movie) {
+    const movieData = {
+        title: movie.title,
+        genre: movie.genre_ids.join(','),  // Hvis du vil gemme genrerne som en kommasepareret liste
+        duration: movie.runtime || 120,  // Brug en standardværdi, hvis runtime ikke er tilgængelig
+        ageLimit: movie.adult ? 18 : 13  // Basér aldersgrænsen på filmens "adult" egenskab
+    };
+
+    const apiUrl = 'http://localhost:8080/api/movies';  // Backend-endpoint
+
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(movieData),  // Konverter film-objektet til JSON
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to send movie to backend');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Movie saved successfully:', data);  // Bekræft at filmen blev gemt
+        })
+        .catch(error => {
+            console.error('Error sending movie to backend:', error);  // Fang fejl hvis noget går galt
+        });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchMovies();  // Hent film når siden indlæses
+});
+
+
+
