@@ -236,7 +236,7 @@ body {
     cursor: pointer; /* Ændre cursor til pointer ved hover */
 }
 
-.trailer-button {
+.trailer-button, Se tidspunkter {
     background-color: #00A4E4; /* Blå farve */
     color: white; /* Hvid tekst */
     border: none; /* Ingen kant */
