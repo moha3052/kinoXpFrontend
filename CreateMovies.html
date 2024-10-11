@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jambe Bio</title>
+    <script src="createMoves.js" defer></script>
+    <link rel="stylesheet" href="createMovies.css">
+    <link rel="icon" href="https://img.icons8.com/?size=100&id=2791&format=png&color=000000">
+</head>
+<body>
+<header class="header">
+    <h1><a href="http://127.0.0.1:5502/index.html" class="no-link-style">Jambe bio</a></h1>
+    <button id="authButton" onclick="" ><a href="http://localhost:63342/kinoXpFrontend/index.html?_ijt=iphv715d89olt3rpf6pavng0hv&_ij_reload=RELOAD_ON_SAVE" class="no-link-style">Log in / Sign in</a></button>
+</header>
+
+<div>
+    <h3>Create movie <span id="Movie-id"></span></h3>
+    <form id="movieForm">
+        <div class="mb-3">
+            <label for="input-image-URL" class="form-label">ImageURL</label>
+            <input type="text" class="form-control" id="input-image-URL" name="imageURL">
+        </div>
+        <div class="mb-3">
+            <label for="input-name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="input-name" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="input-genre" class="form-label">Genre</label>
+            <select id="input-genre" name="genre" class="form-select"></select>
+        </div>
+        <div class="mb-3">
+            <label for="input-age" class="form-label" >Age</label>
+            <select id="input-age" name="age" required></select>
+        </div>
+        <div class="mb-3">
+            <label for="input-duration" class="form-label">Duration</label>
+            <input type="time" class="form-control" id="input-duration" name="duration" value="00:00:00" step="1">
+        </div>
+        <div class="modal-footer">
+            <button id="btn-save" type="submit" >Save</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
