@@ -1,265 +1,49 @@
-function searchMovies(query) {
-    const apiUrl = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}&language=da-DK`;  // Tilføjet sprog parameter (juster efter behov)
-
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYjU5NTNjNmEwOTUxYWMyYmEwZjFkMzA0OTNiNzRlYyIsIm5iZiI6MTcyNzk4NzIxOS4yOTU1NzIsInN1YiI6IjY2ZmRjZDEwZmEzZTY5ZTBlZjdjNjg2NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HtpYh8QPDIkLYrk7mXfwj68e6aRYrRLVYakqaEDNSok'  // Sørg for at bruge en gyldig API-nøgle
+// Function to fetch movies from backend API
+async function fetchMovies() {
+    try {
+        const response = await fetch("http://localhost:8080/api/movies");
+        if (!response.ok) {
+            throw new Error(`Failed to fetch movies: ${response.status} ${response.statusText}`);
         }
-    };
-
-    if (query.trim() === '') {
-        alert('Søgefeltet er tomt. Indtast venligst et søgeord.');
-        return;
+        const movies = await response.json();
+        displayMovies(movies);
+    } catch (error) {
+        console.error("Error fetching movies:", error);
     }
-
-    fetch(apiUrl, options)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`API-fejl: ${response.status}`); // Tilføjet mere eksplicit fejlbesked
-            }
-            return response.json();
-        })
-        .then(data => {
-            const movieContainer = document.getElementById('movies'); // Brug den eksisterende movie container
-            movieContainer.innerHTML = ''; // Ryd tidligere resultater
-
-            if (data.results && data.results.length > 0) {
-                displayMovies(data.results); // Vis de fundne film
-            } else {
-                movieContainer.innerHTML = '<p>Ingen film fundet</p>';
-            }
-        })
-        .catch(error => {
-            console.error('Fejl ved API-kaldet:', error);
-            alert('Noget gik galt ved hentning af film. Se konsollen for detaljer.');
-        });
 }
 
-
-// Event listeners til søgning
-document.getElementById('searchButton').addEventListener('click', () => {
-    const query = document.getElementById('searchInput').value.trim();
-    searchMovies(query);
-});
-
-document.getElementById('searchInput').addEventListener('keypress', (event) => {
-    if (event.key === 'Enter') {
-        const query = document.getElementById('searchInput').value.trim();
-        searchMovies(query);
-    }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Hent film fra 2024, når siden indlæses
-    fetchMoviesFrom2024();
-    fetchGenres(); // Hent genrer
-});
-
-// Hent film fra 2024
-function fetchMoviesFrom2024() {
-    const apiUrl = `https://api.themoviedb.org/3/discover/movie?primary_release_year=2024`;
-
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYjU5NTNjNmEwOTUxYWMyYmEwZjFkMzA0OTNiNzRlYyIsIm5iZiI6MTcyNzk4NzIxOS4yOTU1NzIsInN1YiI6IjY2ZmRjZDEwZmEzZTY5ZTBlZjdjNjg2NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HtpYh8QPDIkLYrk7mXfwj68e6aRYrRLVYakqaEDNSok'
-        }
-    };
-
-    fetch(apiUrl, options)
-        .then(response => response.json())
-        .then(data => {
-            if (data.results.length > 0) {
-                displayMovies(data.results); // Vis filmene fra 2024
-            } else {
-                alert('Ingen film fundet for 2024');
-            }
-        })
-        .catch(error => console.log(error));
-}
-
-// Hent genrer
-function fetchGenres() {
-    const apiUrl = 'https://api.themoviedb.org/3/genre/movie/list';
-
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYjU5NTNjNmEwOTUxYWMyYmEwZjFkMzA0OTNiNzRlYyIsIm5iZiI6MTcyNzk4NzIxOS4yOTU1NzIsInN1YiI6IjY2ZmRjZDEwZmEzZTY5ZTBlZjdjNjg2NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HtpYh8QPDIkLYrk7mXfwj68e6aRYrRLVYakqaEDNSok'
-        }
-    };
-
-    fetch(apiUrl, options)
-        .then(response => response.json())
-        .then(data => {
-            populateGenreFilter(data.genres); // Udfyld genre-filter
-        })
-        .catch(error => console.log(error));
-}
-
-// Udfyld genre-filter
-function populateGenreFilter(genres) {
-    const genreSelect = document.getElementById('genreFilter');
-    genres.forEach(genre => {
-        const option = document.createElement('option');
-        option.value = genre.id;
-        option.textContent = genre.name;
-        genreSelect.appendChild(option);
-    });
-
-    genreSelect.addEventListener('change', (event) => {
-        const selectedGenreId = parseInt(event.target.value);
-        filterMoviesByGenre(selectedGenreId);
-    });
-}
-
-// Filtrér film efter genre
-function filterMoviesByGenre(genreId) {
-    const movieCards = document.querySelectorAll('.movie-card');
-
-    movieCards.forEach(card => {
-        const movieGenreIds = card.dataset.genres.split(',').map(Number);
-        if (genreId === 0 || movieGenreIds.includes(genreId)) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
-    });
-}
-
-// Vis film
+// Function to display movies in the section
 function displayMovies(movies) {
-    const movieContainer = document.getElementById('movies');
-    movieContainer.innerHTML = ''; // Ryd tidligere resultater
+    const moviesSection = document.querySelector("#movies");
+    moviesSection.innerHTML = ""; // Clear the current movies
 
     movies.forEach(movie => {
-        const movieCard = document.createElement('div');
-        movieCard.classList.add('movie-card');
-        movieCard.dataset.genres = movie.genre_ids.join(','); // Gem genre ID'er som data-attribut
+        const movieCard = document.createElement("div");
+        movieCard.classList.add("movie-card");
+
+        // Check if the imageURL is valid, otherwise provide a default image
+        const imageURL = movie.imageURL || 'default-image-url.jpg'; // Replace with a valid default URL
+
         movieCard.innerHTML = `
-            <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${movie.title}">
-            <div class="movie-info">
+            <img src="${imageURL}" alt="${movie.title}" class="movie-poster" />
+            <div class="movie-details">
                 <h3>${movie.title}</h3>
-                <p class="movie-year">${movie.release_date.substring(0, 4)}</p>
-                <p class="movie-rating">${getMPAARating(movie.adult)}</p> <!-- Vis aldersgrænse -->
-                <button class="trailer-button" onclick="showTrailer(${movie.id})">Se Trailer</button> <!-- Tilføj trailer knap -->
+                <p>Genre: ${movie.genre}</p>
+                <p>Age Limit: ${movie.ageLimit}</p>
+                <p>Duration: ${movie.duration} seconds</p>
             </div>
         `;
-        movieContainer.appendChild(movieCard);
+        moviesSection.appendChild(movieCard);
     });
 }
 
-// Helper-funktion til at returnere aldersgrænsen
-function getMPAARating(isAdult) {
-    return isAdult ? 'Aldersgrænse: 18+' : 'Aldersgrænse: 13+'; // Juster efter behov
-}
 
-// Åbn modal for trailer
-function openTrailerModal(trailerKey, thumbnailPath) {
-    const modal = document.getElementById('trailerModal');
-    const iframe = document.getElementById('trailerIframe');
-    const thumbnail = document.getElementById('trailerThumbnail');
-    const playButton = document.getElementById('playButton');
 
-    // Sæt iframe-kilde til trailer
-    iframe.src = `https://www.youtube.com/embed/${trailerKey}`;
-    modal.style.display = 'block'; // Vis modal
-    console.log('Modal displayed'); // Tjek om modal vises
 
-    // Sæt thumbnail
-    thumbnail.src = `https://img.youtube.com/vi/${trailerKey}/hqdefault.jpg`; // Brug Youtube thumbnail
-    thumbnail.style.display = 'block'; // Vis thumbnail
 
-    // Skjul iframe
-    iframe.style.display = 'none';
 
-    // Når play-knappen klikkes, skjul thumbnail og vis iframe
-    playButton.onclick = () => {
-        thumbnail.style.display = 'none'; // Skjul thumbnail
-        iframe.style.display = 'block'; // Vis iframe
-        console.log('Play button clicked'); // Tjek om play-knappen fungerer
-    };
 
-    // Luk modal ved at klikke på krydset eller uden for iframe
-    modal.addEventListener('click', (event) => {
-        if (event.target === modal || event.target.classList.contains('close-button')) {
-            modal.style.display = 'none';
-            iframe.src = ''; // Stop trailer når modal lukkes
-            thumbnail.style.display = 'block'; // Vis thumbnail igen
-        }
-    });
-}
 
-// Hent trailer for filmen
-function showTrailer(movieId) {
-    const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos`;
-
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer YOUR_API_KEY' // Sørg for at ændre til din API-nøgle
-        }
-    };
-
-    fetch(apiUrl, options)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data); // Tjek API-respons
-            if (data.results.length > 0) {
-                const trailerKey = data.results[0].key; // Tag den første trailer
-                console.log('Trailer Key:', trailerKey); // Tjek trailerKey
-                showTrailerThumbnail(movieId, trailerKey); // Vis trailer thumbnail
-            } else {
-                alert('Ingen trailer fundet');
-            }
-        })
-        .catch(error => console.log('Fejl ved hentning af trailer:', error));
-}
-
-function showTrailerThumbnail(movieId, trailerKey) {
-    const thumbnailPath = ''; // Tilføj eventuelt en metode til at hente en specifik thumbnail
-    openTrailerModal(trailerKey, thumbnailPath);
-}
-
-function saveMovieToBackend(movie) {
-    const movieData = {
-        title: movie.title,
-        genre: movie.genre_ids.join(','),  // Hvis du vil gemme genrerne som en kommasepareret liste
-        duration: movie.runtime || 120,  // Brug en standardværdi, hvis runtime ikke er tilgængelig
-        ageLimit: movie.adult ? 18 : 13  // Basér aldersgrænsen på filmens "adult" egenskab
-    };
-
-    const apiUrl = 'http://localhost:8080/api/movies';  // Backend-endpoint
-
-    fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(movieData),  // Konverter film-objektet til JSON
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to send movie to backend');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Movie saved successfully:', data);  // Bekræft at filmen blev gemt
-        })
-        .catch(error => {
-            console.error('Error sending movie to backend:', error);  // Fang fejl hvis noget går galt
-        });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    fetchMovies();  // Hent film når siden indlæses
-});
 
 
 
