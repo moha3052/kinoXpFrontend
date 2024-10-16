@@ -1,31 +1,26 @@
-// Function to fetch movies from backend API
 async function fetchMovies() {
     try {
-        const response = await fetch("http://localhost:8080/api/movies");
+        const response = await fetch('http://localhost:8080/api/movies');
         if (!response.ok) {
-            throw new Error(`Failed to fetch movies: ${response.status} ${response.statusText}`);
+            throw new Error('Network response was not ok');
         }
         const movies = await response.json();
-        displayMovies(movies);
+        console.log(movies);
+        displayMovies(movies); // Funktion til at vise filmene på siden
     } catch (error) {
-        console.error("Error fetching movies:", error);
+        console.error('Fetch error:', error);
     }
 }
 
-// Function to display movies in the section
 function displayMovies(movies) {
     const moviesSection = document.querySelector("#movies");
     moviesSection.innerHTML = ""; // Clear the current movies
 
     movies.forEach(movie => {
-        const movieCard = document.createElement("div");
-        movieCard.classList.add("movie-card");
-
-        // Check if the imageURL is valid, otherwise provide a default image
-        const imageURL = movie.imageURL || 'default-image-url.jpg'; // Replace with a valid default URL
+        const movieCard = document.createElement('div');
 
         movieCard.innerHTML = `
-            <img src="${imageURL}" alt="${movie.title}" class="movie-poster" />
+            <img src="${movie.imageURL}" alt="${movie.title}" class="movie-poster" />
             <div class="movie-details">
                 <h3>${movie.title}</h3>
                 <p>Genre: ${movie.genre}</p>
@@ -33,9 +28,27 @@ function displayMovies(movies) {
                 <p>Duration: ${movie.duration} seconds</p>
             </div>
         `;
-        moviesSection.appendChild(movieCard);
+        moviesSection.appendChild(movieCard); // Brug moviesSection til at tilføje filmene
     });
 }
+
+// Kald fetchMovies, når siden er indlæst
+document.addEventListener('DOMContentLoaded', function() {
+    fetchMovies();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

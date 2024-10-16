@@ -1,4 +1,3 @@
-// Liste af genrer
 const genres = ["Action", "Drama", "Comedy", "Horror", "Sci-Fi", "Fantasy", "Romance", "Thriller", "Animation", "Documentary"];
 const ages = ["ALL_AGES", "G", "PG", "PG-13", "R", "NC-17", "UNKNOWN"];
 
@@ -20,36 +19,29 @@ const ageSelect = document.getElementById("input-age");
 populateSelect(genreSelect, genres);
 populateSelect(ageSelect, ages);
 
-const movieForm = document.querySelector("#movieForm");
-
-const movieFormBtn = document.querySelector("#btn-save");
-
-movieFormBtn.addEventListener("click", postMovie);
-
-async function postMovie(event) {
+async function putMovie(event) {
     event.preventDefault();
-    console.log("IN POST FETCH FUNCTION")
 
-    console.log(movieForm);
+    // Hent filmens ID fra input-feltet
+    const movieId = document.getElementById("input-movie-id").value;
 
-    const durationInSeconds = (str) => {
-        const [hours, min, seconds] = movieForm.querySelector("#input-duration").value.split(":");
-        return Number(hours)*60*60+Number(min)*60+Number(seconds);
-    }
-    console.log(movieForm.querySelector("#input-duration").value)
+    // Hent varighed i sekunder
+    const durationInSeconds = () => {
+        const [hours, minutes, seconds] = movieForm.querySelector("#input-duration").value.split(":");
+        return Number(hours) * 3600 + Number(minutes) * 60 + Number(seconds);
+    };
 
-    const postBody = {
+    // Saml alle de opdaterede data fra formularen
+    const updatedMovieData = {
         imageURL: movieForm.querySelector("#input-image-URL").value,
         title: movieForm.querySelector("#input-name").value,
         genre: movieForm.querySelector("#input-genre").value,
-        duration: durationInSeconds(movieForm.querySelector("#input-duration").value),
+        duration: durationInSeconds(),  // Konverteret til sekunder
         ageLimit: movieForm.querySelector("#input-age").value
-    }
+    };
 
     try {
-        const res = await myFetch("http://localhost:8080/api/movies", postBody);
-
-        // Check if the response is OK (status code in 200-299 range)
+        const res = await myFetch(`http://localhost:8080/api/movies/${movieId}`, updatedMovieData);
         if (res.ok) {
             console.log("Movie created successfully");
 
@@ -58,10 +50,11 @@ async function postMovie(event) {
         } else {
             console.log("An error occurred while creating the movie");
         }
-    } catch (error) {
+    }catch (err){
         console.log("Fetch error: ", error);
     }
 }
+
 
 document.querySelector('.btn-secondary').addEventListener('click', function() {
     // Omdirigerer brugeren til en anden side
@@ -69,16 +62,21 @@ document.querySelector('.btn-secondary').addEventListener('click', function() {
 });
 
 
-
-
-async function myFetch(url,body) {
-    options = {
-        method: "POST",
+// Funktion til at sende PUT-anmodningen
+async function myFetch(url, body) {
+    const options = {
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(body),
-    }
-    return await fetch(url,options);
+    };
+    return await fetch(url, options);
 }
 
+
+
+// Tilføj event listener til formularen
+const movieForm = document.getElementById("movieForm");
+
+movieForm.addEventListener("submit", putMovie);

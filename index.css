@@ -7,13 +7,14 @@ body {
     padding: 0;
 }
 
-
 /* Header styling */
 .header {
+    display: flex;
+    justify-content: space-between; /* Placerer elementer på modsatte sider */
+    align-items: center; /* Centrerer elementerne vertikalt */
     background-color: #34495e;
     color: white;
     padding: 20px;
-    text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -60,7 +61,6 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-
     transition: all 0.3s ease;
 }
 
@@ -94,80 +94,78 @@ body {
     border-color: #3498db;
 }
 
-/* Movies grid */
+@media (max-width: 768px) {
+    .movies {
+        grid-template-columns: repeat(2, 1fr); /* To film per række på tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .movies {
+        grid-template-columns: 1fr; /* Én film per række på mobil */
+    }
+}
+
+
+/* Generelle stilarter for filmsektionen */
+/* Generelle stilarter for filmsektionen */
 .movies {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr); /* Tre film per række */
+    gap: 20px; /* Afstand mellem filmene */
     padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    background-color: #f9f9f9;
 }
 
-/* Movie card styling */
-.movie-card {
-    background-color: #ecf0f1;
+
+/* Stil for hvert enkelt filmkort */
+.movies div {
+    background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Blødere skygge */
     overflow: hidden;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    max-width: 300px;
-    width: 100%;
+    display: flex;
+    flex-direction: column; /* Gør kortet til en kolonne */
+    align-items: center; /* Centrerer indholdet horisontalt */
+    transition: box-shadow 0.3s ease;
 }
 
-.movie-card:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    transform: translateY(-5px);
+/* Stil for filmplakaten */
+.movie-poster {
+    width: auto; /* Lader billedet beholde sin naturlige bredde */
+    height: auto; /* Højden tilpasses automatisk i forhold til billedets proportioner */
+    max-width: 100%; /* Sikrer, at billedet ikke overstiger containerens bredde */
+    max-height: 250px; /* Begræns højden for at holde layoutet ensartet */
+    object-fit: contain; /* Bevarer billedets proportioner, så hele billedet vises inden for containeren */
+}
+
+
+/* Stil for filmens detaljer */
+.movie-details {
+    padding: 10px;
+    text-align: center; /* Centrerer teksten */
+    background-color: #fff;
+    width: 100%; /* Sikrer, at detaljerne dækker hele kortets bredde */
+}
+
+.movie-details h3 {
+    font-size: 1.1rem; /* Mindre skriftstørrelse */
+    color: #34495e;
+    margin: 5px 0;
+}
+
+.movie-details p {
+    font-size: 0.9rem; /* Mindre skriftstørrelse */
+    color: black;
+    margin: 5px 0;
+}
+
+/* Hover-effekt for filmkort (fjernet fra tekst) */
+.movies div:hover {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Større skygge ved hover */
     cursor: pointer;
 }
 
-.movie-card img {
-    width: 100%;
-    height: auto;
-}
-
-.movie-info {
-    padding: 15px;
-    text-align: center;
-}
-
-.movie-info h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #2c3e50;
-}
-
-.movie-info p {
-    font-size: 0.9rem;
-    color: #7f8c8d;
-}
-
-.movie-info .movie-year, .movie-info .movie-genre {
-    font-size: 20px;
-    color: #95a5a6;
-    margin-top: 5px;
-}
-.movie-rating {
-    font-size: 0.85rem;
-    color: #e67e22; /* En farve, der skiller sig ud */
-    margin-top: 5px;
-}
-
-
-.header {
-    display: flex;
-    justify-content: space-between; /* Placerer elementer på modsatte sider */
-    align-items: center; /* Centrerer elementerne vertikalt */
-    background-color: #34495e;
-    color: white;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-}
 
 /* Auth Button styling */
 .header button {
@@ -185,83 +183,30 @@ body {
     background-color: #2980b9;
 }
 
-
-.modal {
-    display: none; /* Skjult som standard */
-    position: fixed; /* Fast position */
-    z-index: 1000; /* Højere z-index for at være ovenpå */
-    left: 0;
-    top: 0;
-    width: 100%; /* Fuldbredde */
-    height: 100%; /* Fuldhøjde */
-    overflow: auto; /* Tilføj scrollbar hvis nødvendigt */
-    background-color: rgba(0, 0, 0, 0.8); /* Sort baggrund med gennemsigtighed */
+.button-box {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Laver afstand mellem knapperne */
+    padding: 20px;
 }
 
-.modal-content {
-    position: absolute; /* Absolut positionering */
-    top: 50%; /* Center vertikalt */
-    left: 50%; /* Center horisontalt */
-    transform: translate(-50%, -50%); /* Flyt ind i midten */
-    width: 80%; /* Bredde på modalindholdet */
-    max-width: 700px; /* Maksimal bredde */
-    background-color: #fff; /* Hvid baggrund for modalindholdet */
-    border-radius: 8px; /* Rundede hjørner */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Skygge for at give dybde */
-    padding: 20px; /* Indvendig afstand */
-}
-
-#trailerThumbnail {
-    width: 100%; /* Billedet fylder modalbredden */
-    border-radius: 8px; /* Rundede hjørner */
-}
-
-.play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 48px;
+.action-button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    background-color: #3498db;
     color: white;
-    z-index: 1;
-    pointer-events: auto; /* Gør det muligt at klikke på play-knappen */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 28px;
-    color: white;
-    cursor: pointer; /* Ændre cursor til pointer ved hover */
-}
-
-.trailer-button, Se tidspunkter {
-    background-color: #00A4E4; /* Blå farve */
-    color: white; /* Hvid tekst */
-    border: none; /* Ingen kant */
-    border-radius: 5px; /* Rundede hjørner */
-    padding: 10px 20px; /* Indvendig afstand */
-    font-size: 16px; /* Skriftstørrelse */
-    cursor: pointer; /* Håndcursor ved hover */
-    transition: background-color 0.3s, transform 0.3s; /* Animationseffekter */
-}
-
-.trailer-button:hover {
-    background-color: #007BB8; /* Mørkere blå ved hover */
-    transform: translateY(-2px); /* Let opadbevægelse ved hover */
-}
-
-.trailer-button:active {
-    transform: translateY(1px); /* Let nedadbevægelse ved klik */
+.action-button:hover {
+    background-color: #2980b9;
 }
 
 
-
-
-
-
-
+/* Modal styling */
 
 
 /* Responsiv styling */
@@ -272,6 +217,19 @@ body {
 
     .search-box {
         max-width: 300px;
+    }
+
+    .movies {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Mindre kort på mindre skærme */
+        gap: 10px;
+    }
+
+    .movie-details h3 {
+        font-size: 1rem;
+    }
+
+    .movie-details p {
+        font-size: 0.8rem;
     }
 }
 

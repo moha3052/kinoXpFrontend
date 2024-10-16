@@ -1,0 +1,128 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+}
+
+.no-link-style {
+    color: white;
+    text-decoration: none;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between; /* Placerer elementer på modsatte sider */
+    align-items: center; /* Centrerer elementerne vertikalt */
+    background-color: #34495e;
+    color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.header button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.header button:hover {
+    background-color: #2980b9;
+}
+
+
+
+/* Centrer formularen og giv den en bredde */
+#movieForm {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* H3 styling */
+h3 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Styling for input felter og select */
+input[type="text"],
+input[type="number"],
+input[type="time"],
+select {
+    width: 90%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+/* Styling for labels */
+label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: block;
+    color: black;
+}
+
+/* Modal footer (knapper) styling */
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Styling for knapper */
+#btn-save,
+.btn-secondary {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+#btn-save {
+    background-color: #28a745;
+    color: #fff;
+}
+
+#btn-save:hover {
+    background-color: #218838;
+}
+
+.btn-secondary {
+    background-color: red;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: darkred;
+}

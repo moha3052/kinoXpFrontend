@@ -10,24 +10,23 @@
 </head>
 <body>
 <header class="header">
-    <h1><a href="http://127.0.0.1:5502/index.html" class="no-link-style">Jambe bio</a></h1>
-    <button id="authButton" onclick="" ><a href="http://localhost:63342/kinoXpFrontend/index.html?_ijt=iphv715d89olt3rpf6pavng0hv&_ij_reload=RELOAD_ON_SAVE" class="no-link-style">Log in / Sign in</a></button>
+    <h1><a href="http://localhost:63342/kinoXpFrontend/index.html?_ijt=iphv715d89olt3rpf6pavng0hv&_ij_reload=RELOAD_ON_SAVE" class="no-link-style">Jambe bio</a></h1>
+    <button id="authButton">
+        <a href="http://localhost:63342/kinoXpFrontend/index.html?_ijt=iphv715d89olt3rpf6pavng0hv&_ij_reload=RELOAD_ON_SAVE" class="no-link-style">Log in / Sign in</a>
+    </button>
 </header>
 
 <div class="search-filter">
-    <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Søg på film"/>
-        <button id="searchButton">
-            <i class="fa-solid fa-magnifying-glass"></i></button>
-    </div>
-
-    <div class="genre-filter">
-        <select id="genreFilter">
-            <option value="0">Alle genrer</option>
-            <!-- Du kan tilføje genre her -->
-        </select>
+    <div class="button-box">
+        <button class="action-button" id="createMovieButton" onclick="window.location.href='http://localhost:63342/kinoXpFrontend/CreateMovies.html?_ijt=f5h1iniaa0inofgive85pt8l6f&_ij_reload=RELOAD_ON_SAVE'">
+            Create Movie
+        </button>
+        <button class="action-button" id="updateMovieButton" onclick="window.location.href='http://localhost:63342/kinoXpFrontend/Update.html?_ijt=meg7s9276gi5suk9cp5l66pvsf'">
+            Update Movie
+        </button>
     </div>
 </div>
+
 
 <section class="movies" id="movies">
     <!-- Her kommer de dynamisk hentede film -->
