@@ -1,6 +1,6 @@
 // Liste af genrer
-const genres = ["Action", "Drama", "Comedy", "Horror", "Sci-Fi", "Fantasy", "Romance", "Thriller", "Animation", "Documentary"];
-const ages = ["ALL_AGES", "G", "PG", "PG-13", "R", "NC-17", "UNKNOWN"];
+const genres = ["ACTION", "HORROR", "ROMANCE", "SCIENCE_FICTION", "THRILLER", "ADVENTURE", "ANIMATION", "COMEDY", "CRIME", "DOCUMENTARY", "DRAMA", "FANTASY", "MYSTERY", "WAR", "WESTERN", "UNKNOWN"];
+const ages = [ "ALL_AGES", "G",  "PG",  "PG_13", "R", "NC_17", "UNKNOWN"];
 
 // Funktion til at tilføje muligheder til en dropdown
 function populateSelect(selectElement, options) {
