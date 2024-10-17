@@ -63,7 +63,7 @@ async function deleteMovie(id) {
 
 
 document.getElementById("createMovieButton").addEventListener("click", function() {
-    window.location = "http://localhost:63342/kinoXpFrontend/html/CreateMovies.html?_ijt=92dkaa259gehcmk485cdar863c";
+    window.location = "http://localhost:63342/kinoXpFrontend/html/CreateMovies.html";
 });
 
 

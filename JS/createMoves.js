@@ -63,12 +63,12 @@ async function postMovie(event) {
     }
 }
 
-document.getElementById('btn-secondary').addEventListener('click', function() {
+document.getElementById("btn-secondary").addEventListener("click", function() {
     // Omdirigerer brugeren til en anden side
     window.location = "http://localhost:63342/kinoXpFrontend/html/index.html"; // Udskift med den side du vil redirecte til
 });
 
-document.getElementById('btn-save').addEventListener('click', function (){
+document.getElementById("btn-save").addEventListener("click", function (){
     window.location = "http://localhost:63342/kinoXpFrontend/html/index.html";
 });
 
