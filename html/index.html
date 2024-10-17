@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jambe Bio</title>
-    <link rel="stylesheet" href="index.css">
+    <script src="../JS/fetchMovieApi.js" defer></script>
+    <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="icon" href="https://img.icons8.com/?size=100&id=2791&format=png&color=000000">
 </head>
@@ -18,14 +19,16 @@
 
 <div class="search-filter">
     <div class="button-box">
-        <button class="action-button" id="createMovieButton" onclick="window.location.href='http://localhost:63342/kinoXpFrontend/CreateMovies.html?_ijt=f5h1iniaa0inofgive85pt8l6f&_ij_reload=RELOAD_ON_SAVE'">
+        <button class="action-button" id="createMovieButton">
             Create Movie
         </button>
-        <button class="action-button" id="updateMovieButton" onclick="window.location.href='http://localhost:63342/kinoXpFrontend/Update.html?_ijt=meg7s9276gi5suk9cp5l66pvsf'">
+        <button class="action-button" id="updateMovieButton" href="http://localhost:63342/kinoXpFrontend/Update.html?_ijt=meg7s9276gi5suk9cp5l66pvsf">
             Update Movie
         </button>
     </div>
 </div>
+
+
 
 
 <section class="movies" id="movies">
@@ -36,7 +39,7 @@
 
 
 <!-- Modal -->
-<script src="fetchMovieApi.js"></script>
+<script src="../JS/fetchMovieApi.js"></script>
 
 </body>
 </html>

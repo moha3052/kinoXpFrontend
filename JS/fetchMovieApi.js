@@ -26,7 +26,12 @@ function displayMovies(movies) {
                 <p>Genre: ${movie.genre}</p>
                 <p>Age Limit: ${movie.ageLimit}</p>
                 <p>Duration: ${movie.duration} seconds</p>
+                <div>
+                <button id="time_Btn" type="button">Releases</button>
+                    <button id="delete_Btn" type="button" onclick="deleteMovie(${movie.id}" >Delete</button>
+                </div>
             </div>
+           
         `;
         moviesSection.appendChild(movieCard); // Brug moviesSection til at tilføje filmene
     });
@@ -37,6 +42,29 @@ document.addEventListener('DOMContentLoaded', function() {
     fetchMovies();
 });
 
+
+
+
+async function deleteMovie(id) {
+    try {
+        const response = await fetch(`http://localhost:8080/api/movies/${id}`, {
+            method: 'DELETE' // Specificér DELETE-metoden
+        });
+        if (!response.ok) {
+            throw new Error('Failed to delete the movie');
+        }
+        console.log(`Movie with ID ${id} deleted successfully`);
+        fetchMovies(); // Opdater listen efter sletning
+
+    } catch (error) {
+        console.error('Delete error:', error);
+    }
+}
+
+
+document.getElementById("createMovieButton").addEventListener("click", function() {
+    window.location = "http://localhost:63342/kinoXpFrontend/html/CreateMovies.html?_ijt=92dkaa259gehcmk485cdar863c";
+});
 
 
 

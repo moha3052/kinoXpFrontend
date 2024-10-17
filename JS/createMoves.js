@@ -1,5 +1,5 @@
 // Liste af genrer
-const genres = ["ACTION", "HORROR", "ROMANCE", "SCIENCE_FICTION", "THRILLER", "ADVENTURE", "ANIMATION", "COMEDY", "CRIME", "DOCUMENTARY", "DRAMA", "FANTASY", "MYSTERY", "WAR", "WESTERN", "UNKNOWN"];
+const genres= ["ACTION", "HORROR", "ROMANCE", "SCIENCE_FICTION", "THRILLER", "ADVENTURE", "ANIMATION", "COMEDY", "CRIME", "DOCUMENTARY", "DRAMA", "FANTASY", "MYSTERY", "WAR", "WESTERN", "UNKNOWN"];
 const ages = [ "ALL_AGES", "G",  "PG",  "PG_13", "R", "NC_17", "UNKNOWN"];
 
 // Funktion til at tilføje muligheder til en dropdown
@@ -63,10 +63,16 @@ async function postMovie(event) {
     }
 }
 
-document.querySelector('.btn-secondary').addEventListener('click', function() {
+document.getElementById('btn-secondary').addEventListener('click', function() {
     // Omdirigerer brugeren til en anden side
-    window.location.href = "http://localhost:63342/kinoXpFrontend/index.html?_ijt=iphv715d89olt3rpf6pavng0hv&_ij_reload=RELOAD_ON_SAVE"; // Udskift med den side du vil redirecte til
+    window.location = "http://localhost:63342/kinoXpFrontend/html/index.html"; // Udskift med den side du vil redirecte til
 });
+
+document.getElementById('btn-save').addEventListener('click', function (){
+    window.location = "http://localhost:63342/kinoXpFrontend/html/index.html";
+});
+
+
 
 
 

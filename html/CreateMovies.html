@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Jambe Bio</title>
-    <script src="Update.js" defer></script>
-    <link rel="stylesheet" href="Update.css">
+    <script src="../JS/createMoves.js" defer></script>
+    <link rel="stylesheet" href="../css/createMovies.css">
     <link rel="icon" href="https://img.icons8.com/?size=100&id=2791&format=png&color=000000">
 </head>
 <body>
@@ -14,28 +14,20 @@
 </header>
 
 <div>
-    <h3>Update movie <span id="Movie-id"></span></h3>
+    <h3>Create movie <span id="Movie-id"></span></h3>
     <form id="movieForm">
-        <div class="mb-3">
-            <label for="input-movie-id" class="form-label">MovieID</label>
-            <input type="number" class="form-control" id="input-movie-id" name="imageURL" required>
-        </div>
-
         <div class="mb-3">
             <label for="input-image-URL" class="form-label">ImageURL</label>
             <input type="text" class="form-control" id="input-image-URL" name="imageURL">
         </div>
-
         <div class="mb-3">
             <label for="input-name" class="form-label">Name</label>
             <input type="text" class="form-control" id="input-name" name="name">
         </div>
-
         <div class="mb-3">
             <label for="input-genre" class="form-label">Genre</label>
             <select id="input-genre" name="genre" class="form-select"></select>
         </div>
-
         <div class="mb-3">
             <label for="input-age" class="form-label" >Age</label>
             <select id="input-age" name="age" required></select>
@@ -46,9 +38,11 @@
         </div>
         <div class="modal-footer">
             <button id="btn-save" type="submit" >Save</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
+                <button type="button" class="btn-secondary" data-bs-dismiss="modal">cancel</button>
         </div>
     </form>
 </div>
 </body>
 </html>
+
+

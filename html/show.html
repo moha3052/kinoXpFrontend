@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biografvisninger</title>
+  <link rel="stylesheet" href="../css/show.css">
+</head>
+<body>
+
+<header class="header">
+  <h1>Jambe Bio - Vælg dine filmvisninger</h1>
+</header>
+
+<div class="container">
+  <h2>Tidspunkter for film</h2>
+  <div id="showtimes-container">
+    <!-- Filmvisninger vil blive hentet og vist her -->
+  </div>
+</div>
+
+<!-- Modal til at vælge pladser -->
+<div id="seatModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <p id="seat-info"></p>
+    <div id="seat-selection">
+      <!-- Tilgængelige sæder vises her -->
+    </div>
+    <button id="confirm-seat-button">Bekræft Plads</button>
+  </div>
+</div>
+
+<script src="../JS/show.js" defer></script>
+</body>
+</html>

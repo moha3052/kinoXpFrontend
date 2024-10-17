@@ -9,7 +9,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: name=${username}&password=${password} // Sender navn og adgangskode som form data
+        body: name=`${username}&password=${password}` // Sender navn og adgangskode som form data
 });
 
     if (response.ok) {
@@ -20,4 +20,4 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         alert("Forkert navn eller adgangskode");
     }
 });
-Skriv til Joel Darko Martinez, Ali Raza Hussain, Enes Tiftikci og Berzan Savuran
+
