@@ -28,7 +28,7 @@ function displayMovies(movies) {
                 <p>Duration: ${movie.duration} seconds</p>
                 <div>
                 <button id="time_Btn" type="button">Releases</button>
-                    <button id="delete_Btn" type="button" onclick="deleteMovie(${movie.id}" >Delete</button>
+                    <button id="delete_Btn" type="button" onclick="deleteMovie(${movie.movieID})" >Delete</button>
                 </div>
             </div>
            
@@ -38,8 +38,8 @@ function displayMovies(movies) {
 }
 
 // Kald fetchMovies, når siden er indlæst
-document.addEventListener('DOMContentLoaded', function() {
-    fetchMovies();
+document.addEventListener('DOMContentLoaded', async function() {
+    await fetchMovies();
 });
 
 
@@ -54,7 +54,7 @@ async function deleteMovie(id) {
             throw new Error('Failed to delete the movie');
         }
         console.log(`Movie with ID ${id} deleted successfully`);
-        fetchMovies(); // Opdater listen efter sletning
+       await fetchMovies(); // Opdater listen efter sletning
 
     } catch (error) {
         console.error('Delete error:', error);
