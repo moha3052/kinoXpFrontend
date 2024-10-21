@@ -80,3 +80,11 @@ async function myFetch(url, body) {
 const movieForm = document.getElementById("movieForm");
 
 movieForm.addEventListener("submit", putMovie);
+
+document.getElementById("btn-save").addEventListener("click", function() {
+    window.location = "http://localhost:63342/kinoXpFrontend/html/index.html";
+});
+
+document.getElementById("btn btn-secondary").addEventListener("click", function() {
+    window.location = "http://localhost:63342/kinoXpFrontend/html/index.html";
+});

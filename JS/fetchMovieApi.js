@@ -54,7 +54,7 @@ async function deleteMovie(id) {
             throw new Error('Failed to delete the movie');
         }
         console.log(`Movie with ID ${id} deleted successfully`);
-       await fetchMovies(); // Opdater listen efter sletning
+        await fetchMovies(); // Opdater listen efter sletning
 
     } catch (error) {
         console.error('Delete error:', error);
@@ -66,25 +66,6 @@ document.getElementById("createMovieButton").addEventListener("click", function(
     window.location = "http://localhost:63342/kinoXpFrontend/html/CreateMovies.html";
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+document.getElementById("updateMovieButton").addEventListener("click", function() {
+    window.location = "http://localhost:63342/kinoXpFrontend/html/update.html?_ijt=du8vs189di2fciehk0ikatdk9a";
+});
